@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 
+
 public class CharacterMovement : MonoBehaviour
 {
-    public GameObject mainCharacter;
-    public GameObject playerTile;
-    public GameObject clickedTile;
-    string objectName;
-    private int prev_x, prev_y, clicked_x, clicked_y;
+    public GameObject mainCharacter; // 플레이어 게임 오브젝트
+    public GameObject playerTile; // 플레이어의 시작 타일
+    private GameObject clickedTile;
+    public bool isMoving = false;
+    //public GameObject moveableTile;
+    string groundAxis; //이동가능 위치를 표기해주기 위한 변수
+    private int player_x, player_y, clicked_x, clicked_y;
     Vector3 destination;
+    public int range = 1; // 이동가능 길이
+    bool ismove = true;
     
 
     // Update is called once per frame
@@ -23,15 +28,23 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-
+        if (ismove)
+        {
+            string[] previousAxis = playerTile.name.Split(",");
+            player_x = Convert.ToInt32(previousAxis[0]);
+            player_y = Convert.ToInt32(previousAxis[1]);
+            showRoute(player_x, player_y, range);
+            ismove = false;
+        }
+        
         if (Input.GetMouseButtonDown(0)) { // 마우스가 클릭되면 0,1,2 왼쪽,오른쪽,휠
-            basicMovement();
-
+            basicMovement(player_x, player_y, range); // 어떠한 효과도 받지않은 기본 움직임 (상하좌우만 구현)  
+            ismove = true;
         }  
     
     }
 
-    void basicMovement(){
+    void basicMovement(int prev_x, int prev_y,int range){ // range 는 상하좌우 각각 이동가능 길이 
 
         string[] previousAxis = playerTile.name.Split(",");// 이전의 캐릭터 위치 좌표값을 저장하는 previousAxis[0], previousAxis[1]
 
@@ -54,14 +67,14 @@ public class CharacterMovement : MonoBehaviour
            Debug.LogError(e.ToString());
         }
 
-        if (((prev_x - clicked_x == 1)|| (prev_x - clicked_x == -1)) && (prev_y == clicked_y) ) // 플레이어 기준 왼쪽 혹은 오른쪽 클릭했을시
+        if (((prev_x - clicked_x == range)|| (prev_x - clicked_x == -range)) && (prev_y == clicked_y) ) // 플레이어 기준 왼쪽 혹은 오른쪽 클릭했을시
         {
             destination = hit.collider.gameObject.transform.position;            // 클릭한 좌표를 목적지로
             destination.z = -1;            // Character가 앞에 있어야하므로 z 위치는 -1 
             mainCharacter.transform.position = destination;//캐릭터 목적지로 이동
             playerTile = clickedTile;
         }
-        else if(((prev_y-clicked_y == 1)|| prev_y - clicked_y == - 1) && (prev_x == clicked_x))
+        else if(((prev_y-clicked_y == range)|| prev_y - clicked_y == - range) && (prev_x == clicked_x))// 플레이어 기준 위 혹은 아래 클릭했을시
         {
             destination = hit.collider.gameObject.transform.position;            // 클릭한 좌표를 목적지로
             destination.z = -1;            // Character가 앞에 있어야하므로 z 위치는 -1 
@@ -73,7 +86,68 @@ public class CharacterMovement : MonoBehaviour
             Debug.Log("이동할 수 없는 좌표입니다");
         }
 
-
     }
-        
+
+    public GameObject moveableMarker;
+    private GameObject temp;
+    Vector3 markerLocate;
+    GameObject[] trash; 
+    List<GameObject> markerList = new List<GameObject>();
+    public void showRoute(int x, int y, int range)
+    {
+        trash = GameObject.FindGameObjectsWithTag("marker");
+        foreach(GameObject trash in trash)
+        {
+            Destroy(trash);
+        }
+        // Instantiate(mainCharacter, new Vector3(0,0,-1), Quaternion.identity); // MainCharacter 생성하기 매개변수(생성객체, 위치, 회전값);
+        try
+        {  
+            temp = GameObject.Find("/9by9_Ground/" + (x + range) + "," + (y));
+            markerLocate = temp.transform.position;
+            markerLocate.z = -0.5f;
+            Instantiate(moveableMarker, markerLocate, Quaternion.identity);
+
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.ToString());
+        }
+
+        try
+        {
+            temp = GameObject.Find("/9by9_Ground/" + (x - range) + "," + (y));
+            markerLocate = temp.transform.position;
+            markerLocate.z = -0.5f;
+            Instantiate(moveableMarker, markerLocate, Quaternion.identity);
+
+        }catch(Exception e)
+        {
+            Debug.Log(e.ToString());
+        }
+
+        try
+        {
+            temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y + range));
+            markerLocate = temp.transform.position;
+            markerLocate.z = -0.5f;
+            Instantiate(moveableMarker, markerLocate, Quaternion.identity);
+
+        }catch(Exception e)
+        {
+            Debug.Log(e.ToString());
+        }
+
+        try
+        {
+            temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y - range));
+            markerLocate = temp.transform.position;
+            markerLocate.z = -0.5f;
+            Instantiate(moveableMarker, markerLocate, Quaternion.identity);
+        }catch(Exception e)
+        {
+            Debug.Log(e.ToString());
+        }
+    }
+
 }
