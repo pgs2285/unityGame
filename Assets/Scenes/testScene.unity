@@ -206,9 +206,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307329023}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cd4e48ab36fe341ebb062957119536d9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 890093c55748b4c4b98871dc17938779, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -234,6 +234,7 @@ MonoBehaviour:
   speed: 10
   MainCharacterLocated: {fileID: 776604526}
   MoveableMarker: {fileID: 7690072338943411735, guid: ed3832e2b5f154e4ebc8888e2388efec, type: 3}
+  moveAnimator: {fileID: 1307329024}
 --- !u!1 &1570340932
 GameObject:
   m_ObjectHideFlags: 0

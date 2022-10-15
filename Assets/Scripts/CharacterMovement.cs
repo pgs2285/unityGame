@@ -15,11 +15,14 @@ public class CharacterMovement : MonoBehaviour
     public GameObject MainCharacterLocated; // 캐릭터의 시작위치 등록
     public GameObject MoveableMarker;
     Vector3 destination;
+    public Animator moveAnimator; 
 
     int state  = 1;
     void Start()
-    {
+    {   DestroyMoveableTile();
+        moveAnimator.SetBool("moving",false);
         destination = MainCharacterLocated.transform.position;
+        MainCharacterLocated.transform.position = destination;
         // checkMoveable(range);
         // Instantiate(mainCharacter, new Vector3(0,0,-1), Quaternion.identity); // MainCharacter 생성하기 매개변수(생성객체, 위치, 회전값);
     
@@ -56,13 +59,15 @@ public class CharacterMovement : MonoBehaviour
         }
 
         if(transform.position != destination){ //완전히 이동될때까지
-        DestroyMoveableTile();
-        transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * speed);
-
+            DestroyMoveableTile();
+            transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * speed);
+            Debug.Log("현재위치:" + transform.position +" 목적지 :" + destination); 
+            moveAnimator.SetBool("moving",true);
         }else {
             if(!clickable) checkMoveable(range); // 한번만 찍게 메모리 낭비 X
             clickable = true; // 이동완료하면 다음으로 이동가능하게
 
+            moveAnimator.SetBool("moving",false);
         }
     }
 
