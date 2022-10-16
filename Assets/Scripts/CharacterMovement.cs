@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
-
+using TMPro;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -14,8 +14,11 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     public GameObject MainCharacterLocated; // 캐릭터의 시작위치 등록
     public GameObject MoveableMarker;
-    Vector3 destination;
+    Vector3 destination = new Vector3(0,-4,1);
     public Animator moveAnimator; 
+    public TextMeshProUGUI resourceText;
+
+    private int turn;
 
     int state  = 1;
     void Start()
@@ -25,7 +28,7 @@ public class CharacterMovement : MonoBehaviour
         MainCharacterLocated.transform.position = destination;
         // checkMoveable(range);
         // Instantiate(mainCharacter, new Vector3(0,0,-1), Quaternion.identity); // MainCharacter 생성하기 매개변수(생성객체, 위치, 회전값);
-    
+        
     }
 
     void Update()
@@ -81,9 +84,10 @@ public class CharacterMovement : MonoBehaviour
         for(int i = 0; i < range; i++){
         
             try{
-
+                
                 temp = GameObject.Find("/9by9_Ground/" + (x + i + 1) + "," + (y)); // range만큼 이동가능한 범위 지정
-                Instantiate(MoveableMarker, temp.transform.position, Quaternion.identity);
+                if(resourceText.text != "0") 
+                    Instantiate(MoveableMarker, temp.transform.position, Quaternion.identity);
 
             }catch(Exception e){
                 Debug.Log(e.ToString());
@@ -92,7 +96,8 @@ public class CharacterMovement : MonoBehaviour
             try{
 
                 temp = GameObject.Find("/9by9_Ground/" + (x - i - 1) + "," + (y)); // range만큼 이동가능한 범위 지정
-                Instantiate(MoveableMarker, temp.transform.position, Quaternion.identity);
+                if (resourceText.text != "0") 
+                    Instantiate(MoveableMarker, temp.transform.position, Quaternion.identity);
 
             }catch(Exception e){
                 Debug.Log(e.ToString());
@@ -101,7 +106,8 @@ public class CharacterMovement : MonoBehaviour
             try{
 
                 temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y + i + 1)); // range만큼 이동가능한 범위 지정
-                Instantiate(MoveableMarker, temp.transform.position, Quaternion.identity);
+                if (resourceText.text != "0")
+                    Instantiate(MoveableMarker, temp.transform.position, Quaternion.identity);
                 
 
             }catch(Exception e){
@@ -111,7 +117,8 @@ public class CharacterMovement : MonoBehaviour
             try{
 
                 temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y - i - 1)); // range만큼 이동가능한 범위 지정
-                Instantiate(MoveableMarker, temp.transform.position, Quaternion.identity);
+                if (resourceText.text != "0")
+                    Instantiate(MoveableMarker, temp.transform.position, Quaternion.identity);
 
             }catch(Exception e){
                 Debug.Log(e.ToString());
@@ -148,8 +155,20 @@ public class CharacterMovement : MonoBehaviour
             return false;
         }
         for(int i = 1; i <= range; i++){
-            if (((prev_x - clicked_x == i)|| (prev_x - clicked_x == -i)) && (prev_y == clicked_y)) return true;
-            else if(((prev_y-clicked_y == i)|| prev_y - clicked_y == - i) && (prev_x == clicked_x)) return true; 
+            if (((prev_x - clicked_x == i) || (prev_x - clicked_x == -i)) && (prev_y == clicked_y) && resourceText.text != "0" )
+            {
+                turn = Convert.ToInt32(resourceText.text);
+                turn -= 1;
+                resourceText.text = turn.ToString();
+                return true;
+            }
+            else if (((prev_y - clicked_y == i) || prev_y - clicked_y == -i) && (prev_x == clicked_x) && resourceText.text != "0")
+            {
+                turn = Convert.ToInt32(resourceText.text);
+                turn -= 1;
+                resourceText.text = turn.ToString();
+                return true;
+            }
         }
         return false;
     }
