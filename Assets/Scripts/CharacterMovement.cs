@@ -16,7 +16,7 @@ public class CharacterMovement : MonoBehaviour
     public GameObject MoveableMarker;
     Vector3 destination = new Vector3(0,-4,1);
     public Animator moveAnimator; 
-    public TextMeshProUGUI resourceText;
+    public TextMeshProUGUI leftTurn;
 
     private int turn;
 
@@ -26,6 +26,7 @@ public class CharacterMovement : MonoBehaviour
         moveAnimator.SetBool("moving",false);
         destination = MainCharacterLocated.transform.position;
         MainCharacterLocated.transform.position = destination;
+
         // checkMoveable(range);
         // Instantiate(mainCharacter, new Vector3(0,0,-1), Quaternion.identity); // MainCharacter 생성하기 매개변수(생성객체, 위치, 회전값);
         
@@ -64,7 +65,6 @@ public class CharacterMovement : MonoBehaviour
         if(transform.position != destination){ //완전히 이동될때까지
             DestroyMoveableTile();
             transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * speed);
-            Debug.Log("현재위치:" + transform.position +" 목적지 :" + destination); 
             moveAnimator.SetBool("moving",true);
         }else {
             if(!clickable) checkMoveable(range); // 한번만 찍게 메모리 낭비 X
@@ -75,7 +75,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
     GameObject temp;
-    void checkMoveable(int range){ // 사용자가 현재 이동가능한 위치를 클릭하였는가?
+    public void checkMoveable(int range){ // 사용자가 현재 이동가능한 위치를 클릭하였는가?
 
        
         string[] nowLocation = MainCharacterLocated.name.Split(",");
@@ -86,7 +86,7 @@ public class CharacterMovement : MonoBehaviour
             try{
                 
                 temp = GameObject.Find("/9by9_Ground/" + (x + i + 1) + "," + (y)); // range만큼 이동가능한 범위 지정
-                if(resourceText.text != "0") 
+                if(leftTurn.text != "0") 
                     Instantiate(MoveableMarker, temp.transform.position, Quaternion.identity);
 
             }catch(Exception e){
@@ -96,7 +96,7 @@ public class CharacterMovement : MonoBehaviour
             try{
 
                 temp = GameObject.Find("/9by9_Ground/" + (x - i - 1) + "," + (y)); // range만큼 이동가능한 범위 지정
-                if (resourceText.text != "0") 
+                if (leftTurn.text != "0") 
                     Instantiate(MoveableMarker, temp.transform.position, Quaternion.identity);
 
             }catch(Exception e){
@@ -106,7 +106,7 @@ public class CharacterMovement : MonoBehaviour
             try{
 
                 temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y + i + 1)); // range만큼 이동가능한 범위 지정
-                if (resourceText.text != "0")
+                if (leftTurn.text != "0")
                     Instantiate(MoveableMarker, temp.transform.position, Quaternion.identity);
                 
 
@@ -117,7 +117,7 @@ public class CharacterMovement : MonoBehaviour
             try{
 
                 temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y - i - 1)); // range만큼 이동가능한 범위 지정
-                if (resourceText.text != "0")
+                if (leftTurn.text != "0")
                     Instantiate(MoveableMarker, temp.transform.position, Quaternion.identity);
 
             }catch(Exception e){
@@ -155,18 +155,18 @@ public class CharacterMovement : MonoBehaviour
             return false;
         }
         for(int i = 1; i <= range; i++){
-            if (((prev_x - clicked_x == i) || (prev_x - clicked_x == -i)) && (prev_y == clicked_y) && resourceText.text != "0" )
+            if (((prev_x - clicked_x == i) || (prev_x - clicked_x == -i)) && (prev_y == clicked_y) && leftTurn.text != "0" )
             {
-                turn = Convert.ToInt32(resourceText.text);
+                turn = Convert.ToInt32(leftTurn.text);
                 turn -= 1;
-                resourceText.text = turn.ToString();
+                leftTurn.text = turn.ToString();
                 return true;
             }
-            else if (((prev_y - clicked_y == i) || prev_y - clicked_y == -i) && (prev_x == clicked_x) && resourceText.text != "0")
+            else if (((prev_y - clicked_y == i) || prev_y - clicked_y == -i) && (prev_x == clicked_x) && leftTurn.text != "0")
             {
-                turn = Convert.ToInt32(resourceText.text);
+                turn = Convert.ToInt32(leftTurn.text);
                 turn -= 1;
-                resourceText.text = turn.ToString();
+                leftTurn.text = turn.ToString();
                 return true;
             }
         }
