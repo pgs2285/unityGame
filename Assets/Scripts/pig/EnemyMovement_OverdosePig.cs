@@ -16,10 +16,12 @@ public class EnemyMovement_OverdosePig : MonoBehaviour
 
     int x = Random.Range(0, 9);
     int y = Random.Range(0, 9);
-    public int Damage = 1;
+
     GameObject temp;
 
-    playerInfo pi;
+    public GameObject OverdosePig_skill;
+
+
     void Start()
     {   x = Random.Range(0, 9);
         y = Random.Range(0, 9);
@@ -32,6 +34,7 @@ public class EnemyMovement_OverdosePig : MonoBehaviour
     }
 
     // Update is called once per frame
+    GameObject[] trash;
     void FixedUpdate()
     {  
         isMyturn = tm.isMyturn;
@@ -40,10 +43,28 @@ public class EnemyMovement_OverdosePig : MonoBehaviour
             tm.enemiesActionCount += 1; // 행동 완료했다는 +1
         }
         transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * speed);
+        if(transform.position == destination)
+        {
+            
+            trash = GameObject.FindGameObjectsWithTag("enemyAttack");
+            foreach (GameObject trash in trash)
+            {
+                Destroy(trash);
+            }
+
+        }
     }
 
     void PigRush(){
-        while(true){
+        temp = GameObject.Find("/9by9_Ground/" + (x + 1) + "," + (y));
+        Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
+        temp = GameObject.Find("/9by9_Ground/" + (x - 1) + "," + (y));
+        Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
+        temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y + 1));
+        Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
+        temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y - 1));
+        Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
+        while (true){
             int pattern = Random.Range(0,4);
             if(x >= 1 && pattern == 0){
                 x -= 1;
@@ -69,22 +90,12 @@ public class EnemyMovement_OverdosePig : MonoBehaviour
             }
 
         }
+
+
+
+
     }
 
-void OnCollisionEnter2D(Collision2D collision) // 충돌했는가?
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("충돌햇음다");
-            pi = GameObject.Find("MainCat").GetComponent<playerInfo>();
-            pi.nowHP -= Damage;
-            PlayerPrefs.SetInt("nowHP",pi.nowHP);
-            Debug.Log(PlayerPrefs.GetInt("nowHP").ToString());
-        }
-    }
 
-    void enemyLocation(int x, int y){
-        
-    }
 
 }

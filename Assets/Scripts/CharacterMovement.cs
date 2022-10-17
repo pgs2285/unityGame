@@ -17,7 +17,7 @@ public class CharacterMovement : MonoBehaviour
     Vector3 destination = new Vector3(0,-4,1);
     public Animator moveAnimator; 
     public TextMeshProUGUI leftTurn;
-
+    playerInfo pi;
     private int turn;
 
     int state  = 1;
@@ -172,4 +172,17 @@ public class CharacterMovement : MonoBehaviour
         }
         return false;
     }
+
+    void OnCollisionEnter2D(Collision2D collision) // 충돌했는가?
+    {
+        if (collision.gameObject.tag == "enemy" || collision.gameObject.tag == "enemyAttack")
+        {
+            Debug.Log("충돌햇음다");
+            pi = GameObject.Find("MainCat").GetComponent<playerInfo>();
+            pi.nowHP -= 1;
+            PlayerPrefs.SetInt("nowHP", pi.nowHP);
+            Debug.Log(PlayerPrefs.GetInt("nowHP").ToString());
+        }
+    }
+
 }

@@ -15,7 +15,7 @@ public class EnemyMovement_PIG : MonoBehaviour
 
     int x = Random.Range(0, 9);
     int y = Random.Range(0, 9);
-    public int Damage = 1;
+
     GameObject temp;
 
     playerInfo pi;
@@ -70,20 +70,7 @@ public class EnemyMovement_PIG : MonoBehaviour
         }
     }
 
-void OnCollisionEnter2D(Collision2D collision) // 충돌했는가?
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("충돌햇음다");
-            pi = GameObject.Find("MainCat").GetComponent<playerInfo>();
-            pi.nowHP -= Damage;
-            PlayerPrefs.SetInt("nowHP",pi.nowHP);
-            Debug.Log(PlayerPrefs.GetInt("nowHP").ToString());
-        }
-    }
 
-    void enemyLocation(int x, int y){
-        
-    }
+
 
 }
