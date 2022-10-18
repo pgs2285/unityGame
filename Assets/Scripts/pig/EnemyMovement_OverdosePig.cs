@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class EnemyMovement_OverdosePig : MonoBehaviour
 {
@@ -14,8 +15,8 @@ public class EnemyMovement_OverdosePig : MonoBehaviour
     public Vector3 destination;
     public int speed = 10;
 
-    int x = Random.Range(0, 9);
-    int y = Random.Range(0, 9);
+    int x = UnityEngine.Random.Range(0, 9);
+    int y = UnityEngine.Random.Range(0, 9);
 
     GameObject temp;
 
@@ -23,8 +24,8 @@ public class EnemyMovement_OverdosePig : MonoBehaviour
 
 
     void Start()
-    {   x = Random.Range(0, 9);
-        y = Random.Range(0, 9);
+    {   x = UnityEngine.Random.Range(0, 9);
+        y = UnityEngine.Random.Range(0, 9);
         temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y)); // range만큼 이동가능한 범위 지정
         destination = temp.transform.position;
         transform.position = destination;
@@ -56,16 +57,12 @@ public class EnemyMovement_OverdosePig : MonoBehaviour
     }
 
     void PigRush(){
-        temp = GameObject.Find("/9by9_Ground/" + (x + 1) + "," + (y));
-        Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
-        temp = GameObject.Find("/9by9_Ground/" + (x - 1) + "," + (y));
-        Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
-        temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y + 1));
-        Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
-        temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y - 1));
-        Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
+        //이하 try catch 문은 독 범위 표시 여기부터
+        overdoseSkill();
+
+
         while (true){
-            int pattern = Random.Range(0,4);
+            int pattern = UnityEngine.Random.Range(0,4);
             if(x >= 1 && pattern == 0){
                 x -= 1;
                 temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y)); // range만큼 이동가능한 범위 지정
@@ -96,6 +93,90 @@ public class EnemyMovement_OverdosePig : MonoBehaviour
 
     }
 
+    void overdoseSkill()
+    {
+        try
+        {
+            temp = GameObject.Find("/9by9_Ground/" + (x + 1) + "," + (y));
+            Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+        try
+        {
+            temp = GameObject.Find("/9by9_Ground/" + (x - 1) + "," + (y));
+            Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+        try
+        {
+            temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y + 1));
+            Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
+
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+        try
+        {
+            temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y - 1));
+            Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
+
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+        try
+        {
+            temp = GameObject.Find("/9by9_Ground/" + (x + 1) + "," + (y + 1));
+            Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
+
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+
+        try
+        {
+            temp = GameObject.Find("/9by9_Ground/" + (x + 1) + "," + (y - 1));
+            Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
+
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+        try
+        {
+            temp = GameObject.Find("/9by9_Ground/" + (x - 1) + "," + (y - 1));
+            Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
+
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+
+        try
+        {
+            temp = GameObject.Find("/9by9_Ground/" + (x - 1) + "," + (y + 1));
+            Instantiate(OverdosePig_skill, temp.transform.position, Quaternion.identity);
+
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+
+    }
 
 
 }

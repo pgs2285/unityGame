@@ -5,14 +5,14 @@ using Unity.Burst.CompilerServices;
 using UnityEngine;
 using TMPro;
 
-public class CharacterMovement : MonoBehaviour
+public class move : MonoBehaviour
 {
 
 
     Vector3 destination;
 
     void Start()
-    {  
+    {
 
     }
 
@@ -21,22 +21,22 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // ì¹´ë©”ë¼ë¡œ ë¶€í„° ë§ˆìš°ìŠ¤ ìœ„ì¹˜ì— Rayë¥¼ ìœë‹¤
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // Ä«¸Ş¶ó·Î ºÎÅÍ ¸¶¿ì½º À§Ä¡¿¡ Ray¸¦ ½ğ´Ù
 
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);        //ë°œì‚¬ìœ„ì¹˜, ë°œì‚¬ ë°©í–¥
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);        //¹ß»çÀ§Ä¡, ¹ß»ç ¹æÇâ
             Debug.Log(destination);
-            destination = hit.collider.gameObject.transform.position; // ì‚¬ìš©ìê°€ í´ë¦­í•œ íƒ€ì¼
+            destination = hit.collider.gameObject.transform.position; // »ç¿ëÀÚ°¡ Å¬¸¯ÇÑ Å¸ÀÏ
 
             destination.x = Convert.ToInt32(destination.x);
             destination.y = Convert.ToInt32(destination.y);
 
             transform.position = destination;
 
-            
+
 
         }
 
     }
-  
+
 
 }

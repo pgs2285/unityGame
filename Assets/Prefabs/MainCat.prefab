@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4707282485380238223}
   - component: {fileID: 4707282485380238220}
   - component: {fileID: 4707282485380238217}
-  - component: {fileID: 4707282485380238221}
   - component: {fileID: 7538217721247362880}
   - component: {fileID: -2303620857111632286}
   - component: {fileID: 3018913726866709243}
@@ -109,24 +108,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4707282485380238221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4707282485380237430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6a4341c47a40994395977c8745be12e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 1
-  speed: 6
-  MainCharacterLocated: {fileID: 0}
-  MoveableMarker: {fileID: 7690072338943411735, guid: ed3832e2b5f154e4ebc8888e2388efec, type: 3}
-  moveAnimator: {fileID: 4707282485380238217}
-  leftTurn: {fileID: 0}
 --- !u!61 &7538217721247362880
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -186,4 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1692501253c0644999d9326140e1ba7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: {fileID: 0}
+  nowHP: 0
+  fullHP: 0
+  Attack: 0

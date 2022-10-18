@@ -21,8 +21,8 @@ public class playerInfo : MonoBehaviour
         //     fPlayerPrefs.SetInt("HP", 3); 
         // }
 
-        PlayerPrefs.SetInt("nowHP", 1); 
-        PlayerPrefs.SetInt("HP", 1); 
+        PlayerPrefs.SetInt("nowHP", 3); 
+        PlayerPrefs.SetInt("HP", 3); 
 
     }
 
