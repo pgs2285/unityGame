@@ -7,8 +7,9 @@ TagManager:
   - marker
   - enemy
   - player
-  - enemyAttack
   - ground
+  - ArrowMarker
+  - groundPrefs
   layers:
   - Default
   - TransparentFX
