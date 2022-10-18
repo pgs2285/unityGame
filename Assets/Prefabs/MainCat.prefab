@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 4707282485380238220}
   - component: {fileID: 4707282485380238217}
   - component: {fileID: 7538217721247362880}
-  - component: {fileID: -2303620857111632286}
-  - component: {fileID: 3018913726866709243}
   m_Layer: 0
   m_Name: MainCat
   m_TagString: Player
@@ -134,39 +132,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.17588925, y: 0.22977407}
   m_EdgeRadius: 0
---- !u!50 &-2303620857111632286
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4707282485380237430}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &3018913726866709243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4707282485380237430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1692501253c0644999d9326140e1ba7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nowHP: 0
-  fullHP: 0
-  Attack: 0
