@@ -5,19 +5,17 @@ using TMPro;
 
 public class EnemyMovement_PIG : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public TextMeshProUGUI leftTurn;
-    public bool isMyturn;
+    bool isMyturn;
 
     private turnManagement tm;
-    private CharacterMovement cm;
+
     public int MapSize = 8;
     public Vector3 destination;
     public int speed = 10;
 
     int x = Random.Range(0, 9);
     int y = Random.Range(0, 9);
-    public int Damage = 1;
+
     GameObject temp;
 
     playerInfo pi;
@@ -27,18 +25,18 @@ public class EnemyMovement_PIG : MonoBehaviour
         temp = GameObject.Find("/9by9_Ground/" + (x) + "," + (y)); // range만큼 이동가능한 범위 지정
         destination = temp.transform.position;
         transform.position = destination;
+        tm = GameObject.Find("backgroundSettings").GetComponent<turnManagement>();
+
+        tm.enemyNumber += 1; // 모든 적이 이동했나 확인하기 위해 enemyNumber를 올려줌
     }
 
     // Update is called once per frame
-    void Update()
-    {   tm = GameObject.Find("backgroundSettings").GetComponent<turnManagement>();
-        cm = GameObject.Find("MainCat").GetComponent<CharacterMovement>();
+    void FixedUpdate()
+    {  
         isMyturn = tm.isMyturn;
         if(!isMyturn){// 만약 내턴이 아니면
             PigRush();
-            tm.isMyturn = true; // 적 이동 끝
-            leftTurn.text = "5";
-            cm.checkMoveable(1);
+            tm.enemiesActionCount += 1; // 행동 완료했다는 +1
         }
         transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime * speed);
     }
@@ -72,20 +70,7 @@ public class EnemyMovement_PIG : MonoBehaviour
         }
     }
 
-void OnCollisionEnter2D(Collision2D collision) // 충돌했는가?
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("충돌햇음다");
-            pi = GameObject.Find("MainCat").GetComponent<playerInfo>();
-            pi.nowHP -= Damage;
-            PlayerPrefs.SetInt("nowHP",pi.nowHP);
-            Debug.Log(PlayerPrefs.GetInt("nowHP").ToString());
-        }
-    }
 
-    void enemyLocation(int x, int y){
-        
-    }
+
 
 }
