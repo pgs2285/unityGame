@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7279933532800415860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7279933532800415861}
+  - component: {fileID: 7279933532800415858}
+  m_Layer: 0
+  m_Name: backgroundSettings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7279933532800415861
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279933532800415860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.830673, y: 0.39868087, z: -0.01795314}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7279933532800415858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279933532800415860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba316f0d6ad2414689c9a8f4125bfae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: {fileID: 0}
+  Monster:
+  - {fileID: 4665010718707763835, guid: 0c78c0545606cdb4e96b80e007853148, type: 3}
+  - {fileID: 4665010718707763835, guid: 0c78c0545606cdb4e96b80e007853148, type: 3}
+  - {fileID: 4665010718707763835, guid: 0c78c0545606cdb4e96b80e007853148, type: 3}
+  monsterImage: {fileID: 0}
+  monsterMoveIndicator: {fileID: 0}
+  player: {fileID: 0}
+  playerTurn: 0
+  checkTurn: 0

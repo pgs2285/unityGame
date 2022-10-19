@@ -23,6 +23,8 @@ public class MOVING_MAIN_CHARACTER : MonoBehaviour
     public GameObject LEFTArrow;
     public GameObject RIGHTArrow;
 
+    public GameObject system;
+
     public GameObject Ground;
     public Animator mainCharacterAnimator;
     private float moveMap_X=0;
@@ -33,6 +35,8 @@ public class MOVING_MAIN_CHARACTER : MonoBehaviour
     public float start_x;
     public float start_y;
     const double EPSILON = 0.0001; // 허용오차
+
+    public bool isMyTurn = true;
 
     private bool isEqual(float x, float y) // 비교 함수.
 
@@ -55,7 +59,7 @@ public class MOVING_MAIN_CHARACTER : MonoBehaviour
 
     void Update()
     {
-        if (Convert.ToInt32(cost.text) >= 1) // 턴이 남아있으면 움직여라
+        if (Convert.ToInt32(cost.text) >= 1 && system.GetComponent<MonsterController>().playerTurn) // 턴이 남아있으면 움직여라
         {
             showMoveablePaths();
             clickMove();

@@ -10,6 +10,7 @@ TagManager:
   - ground
   - ArrowMarker
   - groundPrefs
+  - system
   layers:
   - Default
   - TransparentFX
