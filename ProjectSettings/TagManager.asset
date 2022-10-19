@@ -7,8 +7,10 @@ TagManager:
   - marker
   - enemy
   - player
-  - enemyAttack
   - ground
+  - ArrowMarker
+  - groundPrefs
+  - system
   layers:
   - Default
   - TransparentFX
