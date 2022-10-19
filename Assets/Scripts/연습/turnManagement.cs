@@ -28,7 +28,7 @@ public class turnManagement : MonoBehaviour
         {
             isMyturn = true; // 적 이동 끝
             leftTurn.text = "5";
-            cm.checkMoveable(1);
+ 
             enemiesActionCount = 0;
         }
         if (PlayerPrefs.GetInt("nowHP") == 0)

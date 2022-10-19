@@ -6,6 +6,7 @@ using UnityEngine;
 public class characterMove : MonoBehaviour
 {
     Vector3 vec;
+    public int speed;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +19,13 @@ public class characterMove : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit=Physics.Raycast(ray.origin,ray.direction,Mathf.Infinity);
+            RaycastHit2D hit=Physics2D.Raycast(ray.origin,ray.direction,Mathf.Infinity);
             if(hit)
             {
-                vec = hit.collider.gameObject;
+                vec = hit.collider.gameObject.transform.position;
             }
         }
-        transform.position = Vector3.MoveTowards(transform.position, vec);
+        transform.position = Vector3.MoveTowards(transform.position, vec,Time.deltaTime*speed);
+
     }
 }
