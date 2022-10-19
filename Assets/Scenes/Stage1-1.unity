@@ -379,7 +379,9 @@ MonoBehaviour:
   cost: {fileID: 252691804}
   start_x: 0
   start_y: -4
+  basicAttack: {fileID: 5712398783979824682, guid: c37b4be8da5a2a14f94f14b308aefe84, type: 3}
   isMyTurn: 1
+  basicAttackAnimator: {fileID: 0}
 --- !u!95 &1178967318 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4707282485380238217, guid: f59060e5380cc50429364f040272d931, type: 3}
