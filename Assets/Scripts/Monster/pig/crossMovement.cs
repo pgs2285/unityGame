@@ -36,7 +36,6 @@ public class crossMovement : MonoBehaviour
     void FixedUpdate()
     {   
         if(!(system.GetComponent<MonsterController>().playerTurn)){
-            Debug.Log("이동모드");
             pigMovePattern();
         }
         transform.position = Vector3.MoveTowards(transform.position, moveToScreen, Time.deltaTime * speed);
@@ -45,28 +44,23 @@ public class crossMovement : MonoBehaviour
     void pigMovePattern(){
         while(true){
             int direction = Random.Range(1,5); // 1~4 까지 이동
-            Debug.Log(direction);
             checkGround = moveToScreen;
             if(direction == UP){
-                Debug.Log("move UP");
                 checkGround.y += range;
                 moveToScreen = checkGround;
                 system.GetComponent<MonsterController>().checkTurn += 1;
                 
             }else if(direction == DOWN){
-                Debug.Log("move DOWN");
                 checkGround.y -= range;
                 moveToScreen = checkGround;
                 system.GetComponent<MonsterController>().checkTurn += 1;
                 
             }else if(direction == LEFT){
-                Debug.Log("move LEFT");
                 checkGround.x -= range;
                 moveToScreen = checkGround;
                 system.GetComponent<MonsterController>().checkTurn += 1;
                 
             }else if(direction == RIGHT){
-                Debug.Log("move RIGHT");
                 checkGround.x += range;
                 moveToScreen = checkGround;
                 system.GetComponent<MonsterController>().checkTurn += 1;

@@ -5,22 +5,29 @@ using UnityEngine;
 public class Monster_PIG : Monster
 {
     // Start is called before the first frame update
+    Animator pig_animator;
+
     void Start()
     {
-        
+        pig_animator = GetComponent<Animator>();        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "playerAttack")
+       
+        if (collision.collider.CompareTag("playerAttack"))
         {
-            setHP(getHP());
+
+            setHP(getHP() - collision.gameObject.GetComponent<basicAttack>().getTotalDamage());
+
+        }
+        if (getHP() == 0)
+        {
+            Destroy(gameObject.GetComponent<BoxCollider2D>());
+            pig_animator.SetBool("isDeath", true);
+            
         }
     }
+    
 }

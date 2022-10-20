@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class MOVING_MAIN_CHARACTER : MonoBehaviour
+public class MOVING_MAIN_CHARACTER : MainCharacter
 {   
     private Vector3 Destination;
     public float speed = 6.0f;
@@ -102,6 +102,7 @@ public class MOVING_MAIN_CHARACTER : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);  //발사위치, 발사 방향, 발사거리
             if(hit.collider.gameObject.tag == "enemy" && checkMovablePosition(hit) != ERROR)
             {
+                cost.text = (Convert.ToInt32(cost.text) - 1).ToString(); // cost 1감소
                 Instantiate(basicAttack, hit.collider.gameObject.transform.position, Quaternion.identity);
             }
             if (checkMovablePosition(hit) != ERROR && hit.collider.gameObject.tag == "ground")

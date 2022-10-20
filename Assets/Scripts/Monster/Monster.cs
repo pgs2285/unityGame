@@ -8,10 +8,10 @@ public class Monster:MonoBehaviour
     
     public int getHP()
     {
-        return hp;
+        return this.hp;
     }
-    public int setHP(int hp)
+    public void setHP(int hp)
     {
-        return this.hp = hp;
+        this.hp = hp;
     }
 }
