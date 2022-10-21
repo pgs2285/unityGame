@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class basicAttack : MonoBehaviour
 {
-    int playerDamage = GameObject.Find("MainCat").GetComponent<MainCharacter>().getDamage();
+    int playerDamage;
     int damageCoefficient;
 
     private int totalDamage;
 
+    public void Start()
+    {
+        playerDamage = GameObject.Find("MainCat").GetComponent<MainCharacter>().getDamage();
+    }
 
     public int getTotalDamage()
     {

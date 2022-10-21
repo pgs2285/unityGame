@@ -48,6 +48,7 @@ public class MOVING_MAIN_CHARACTER : MainCharacter
     }
     void Start()
     {
+                
         moveMap_X = Ground.transform.position.x;
         moveMap_Y = Ground.transform.position.y;
         MapRatio = Ground.transform.localScale.x;

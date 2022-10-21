@@ -7,6 +7,7 @@ public class Monster:MonoBehaviour
     protected int hp = 10;
     protected int damage = 1;
     
+    
     public int getHP()
     {
         return this.hp;
@@ -21,4 +22,16 @@ public class Monster:MonoBehaviour
     public void setDamage(int damage){
         this.damage = damage;
     }
+    public bool collisionPrevent(Vector3 expectedPath)
+    {
+        bool isOverlap = false;
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("enemy");
+        for(int i = 0; i < monsters.Length; i++)
+        {
+            if (monsters[i].transform.position == expectedPath) isOverlap = true;
+        }
+  
+        return isOverlap;
+    }
+
 }
