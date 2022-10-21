@@ -26,7 +26,7 @@ public class Monster_PIG : Monster
         {
             Destroy(gameObject.GetComponent<BoxCollider2D>());
             pig_animator.SetBool("isDeath", true);
-            
+            GameObject.Find("backgroundSettings").GetComponent<MonsterController>().deadMonsterNumber += 1;            
         }
     }
     

@@ -15,17 +15,26 @@ public class MonsterController : MonoBehaviour
     public Image monsterMoveIndicator;
     private Sprite blankImage;
     public GameObject player;
-
+    public int deadMonsterNumber = 0;
     public bool playerTurn;
+    public TextMeshProUGUI monsterExplain;
 
     void Start()
     {   
-        for(int i = 0; i < Monster.Length; i++)
-        {
+      blankImage = monsterImage.sprite;
+      StartCoroutine(generateDelay());
+      
+    }
+
+    IEnumerator generateDelay(){
+      yield return new WaitForSeconds(1.5f);
+
+      for(int i = 0; i < Monster.Length; i++)
+      {
           Instantiate(Monster[i]);
           
           blankImage = monsterImage.sprite;
-        }
+      }
     }
 
     // Update is called once per frame
@@ -37,13 +46,18 @@ public class MonsterController : MonoBehaviour
     void IndicateImage(){
       Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // 카메라로 부터 마우스 위치에 Ray를 쏜다
       RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);  //발사위치, 발사 방향, 발사거리
-      if(hit.collider.gameObject.tag == "enemy"){
-        
-        monsterImage.sprite = hit.collider.gameObject.GetComponent<SpriteRenderer>().sprite; // 돼지 UI에 띄우기
-        monsterMoveIndicator.sprite = hit.collider.gameObject.GetComponent<crossMovement>().moveIndicator;
-      }else{
-        monsterImage.sprite = blankImage;
-        monsterMoveIndicator.sprite = blankImage;
+        if(hit){
+        if(hit.collider.gameObject.tag == "enemy"){
+          
+          monsterImage.sprite = hit.collider.gameObject.GetComponent<SpriteRenderer>().sprite; // 돼지 UI에 띄우기
+          monsterMoveIndicator.sprite = hit.collider.gameObject.GetComponent<crossMovement>().moveIndicator;
+          monsterExplain.text = "지능이 떨어져 주변을 인식하지 못해!";
+        }else{
+          monsterImage.sprite = blankImage;
+          monsterMoveIndicator.sprite = blankImage;
+          monsterExplain.text = "";
+
+        }
       }
     }
     public int checkTurn = 0;
@@ -51,8 +65,9 @@ public class MonsterController : MonoBehaviour
 
     void checkTurnEnd(){
       for(int i = 0; i< Monster.Length; i++){
-
-        if(checkTurn >= Monster.Length && playerTurn == false){ //만약 monster들이 전부다 turn을 마쳤고, 내 턴이 종료된 상태라면
+          
+        if(checkTurn == GameObject.FindGameObjectsWithTag("enemy").Length && playerTurn == false){ //만약 monster들이 전부다 turn을 마쳤고, 내 턴이 종료된 상태라면
+          
           playerTurn = true;
           cost.text = "5";
           checkTurn = 0;
