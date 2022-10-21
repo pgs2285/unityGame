@@ -11,6 +11,7 @@ TagManager:
   - ArrowMarker
   - groundPrefs
   - system
+  - playerAttack
   layers:
   - Default
   - TransparentFX

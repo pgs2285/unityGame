@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class crossMovement : MonoBehaviour
     private const int DOWN = 3;
     private const int UP = 4;
     private const int ERROR = 0;
+    
 
     private GameObject system;
 
@@ -27,8 +29,10 @@ public class crossMovement : MonoBehaviour
     {
         Ground = GameObject.FindGameObjectWithTag("groundPrefs");
         range = range * Ground.transform.localScale.x;
-        moveToScreen.x = range * Random.Range(-4, 4) + Ground.transform.position.x;
-        moveToScreen.y = range * Random.Range(-4, 4) + Ground.transform.position.y;
+        moveToScreen.x = range * UnityEngine.Random.Range(-4, 4) + Ground.transform.position.x;
+        moveToScreen.y = range * UnityEngine.Random.Range(-4, 4) + Ground.transform.position.y;
+        moveToScreen.z = -2;
+        Debug.Log(moveToScreen);
         system = GameObject.FindGameObjectWithTag("system");
         
     }
@@ -36,7 +40,6 @@ public class crossMovement : MonoBehaviour
     void FixedUpdate()
     {   
         if(!(system.GetComponent<MonsterController>().playerTurn)){
-            Debug.Log("이동모드");
             pigMovePattern();
         }
         transform.position = Vector3.MoveTowards(transform.position, moveToScreen, Time.deltaTime * speed);
@@ -44,31 +47,26 @@ public class crossMovement : MonoBehaviour
 
     void pigMovePattern(){
         while(true){
-            int direction = Random.Range(1,5); // 1~4 까지 이동
-            Debug.Log(direction);
+            int direction = UnityEngine.Random.Range(1,5); // 1~4 까지 이동
             checkGround = moveToScreen;
             if(direction == UP){
-                Debug.Log("move UP");
                 checkGround.y += range;
-                moveToScreen = checkGround;
+                if(isGround(checkGround)) moveToScreen = checkGround;
                 system.GetComponent<MonsterController>().checkTurn += 1;
                 
             }else if(direction == DOWN){
-                Debug.Log("move DOWN");
                 checkGround.y -= range;
-                moveToScreen = checkGround;
+                if(isGround(checkGround)) moveToScreen = checkGround;
                 system.GetComponent<MonsterController>().checkTurn += 1;
                 
             }else if(direction == LEFT){
-                Debug.Log("move LEFT");
                 checkGround.x -= range;
-                moveToScreen = checkGround;
+                if(isGround(checkGround)) moveToScreen = checkGround;
                 system.GetComponent<MonsterController>().checkTurn += 1;
                 
             }else if(direction == RIGHT){
-                Debug.Log("move RIGHT");
                 checkGround.x += range;
-                moveToScreen = checkGround;
+                if(isGround(checkGround)) moveToScreen = checkGround;
                 system.GetComponent<MonsterController>().checkTurn += 1;
                 
             }
@@ -76,6 +74,14 @@ public class crossMovement : MonoBehaviour
         }
     }
 
+    bool isGround(Vector3 moving){
+        int x =  (int) Math.Round((moving.x - Ground.transform.position.x) / range);
+        int y =  (int) Math.Round((moving.y - Ground.transform.position.y) / range ); //반올림 소수 오차로인해 5가 4로나오는 경우 
+        if(GameObject.Find("/9by9_Ground/"+x+","+y) != null){
+            return true;
+        }
+        return false;
+    }
 
 
 }
