@@ -18,7 +18,7 @@ public class MainCharacter : MonoBehaviour
     public int getDamage()
     {
         
-        return Random.Range(damage-1, damage +2);
+        return Random.Range(damage-2, damage +2);
     }
     public void setHp(int hp)
     {

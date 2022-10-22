@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class Monster:MonoBehaviour
 {
-    protected int hp = 10;
+    protected int currentHp = 10;
     protected int damage = 1;
-    
+    protected int fullHP = 10;
     
     public int getHP()
     {
-        return this.hp;
+        return this.currentHp;
     }
-    public void setHP(int hp)
+    public void setHP(int currentHp)
     {
-        this.hp = hp;
+        this.currentHp = currentHp;
+    }
+
+    public int getFullHP()
+    {
+        return this.fullHP;
     }
     public int getDamage(){
         return damage;

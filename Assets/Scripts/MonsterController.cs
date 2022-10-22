@@ -80,12 +80,13 @@ public class MonsterController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);  //발사위치, 발사 방향, 발사거리
         if (hit)
         {
-            if (hit.collider.gameObject.tag == "enemy")
+            if (hit.collider.gameObject.tag == "enemy" && hit.collider.gameObject.name.Contains("PIG"))
             {
 
                 monsterImage.sprite = hit.collider.gameObject.GetComponent<SpriteRenderer>().sprite; // 돼지 UI에 띄우기
                 monsterMoveIndicator.sprite = hit.collider.gameObject.GetComponent<crossMovement>().moveIndicator;
-                monsterExplain.text = "지능이 떨어져 주변을 인식하지 못해!";
+                monsterExplain.text = string.Format("HP  {0} / {1}                       지능이 떨어져 주변을 인식하지 못한다", hit.collider.gameObject.GetComponent<Monster>().getHP(), hit.collider.gameObject.GetComponent<Monster>().getFullHP());
+
             }
             else
             {
