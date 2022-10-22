@@ -47,6 +47,7 @@ public class skill : MonoBehaviour
         this.skillLevel = skillLevel;
     }
 
+
     public int MousePosition(float range)
     {
         mousePosition = transform.position;

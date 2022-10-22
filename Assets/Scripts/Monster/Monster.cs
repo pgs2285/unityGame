@@ -5,13 +5,33 @@ using UnityEngine;
 public class Monster:MonoBehaviour
 {
     protected int hp = 10;
+    protected int damage = 1;
+    
     
     public int getHP()
     {
-        return hp;
+        return this.hp;
     }
-    public int setHP(int hp)
+    public void setHP(int hp)
     {
-        return this.hp = hp;
+        this.hp = hp;
     }
+    public int getDamage(){
+        return damage;
+    }
+    public void setDamage(int damage){
+        this.damage = damage;
+    }
+    public bool collisionPrevent(Vector3 expectedPath)
+    {
+        bool isOverlap = false;
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("enemy");
+        for(int i = 0; i < monsters.Length; i++)
+        {
+            if (monsters[i].transform.position == expectedPath) isOverlap = true;
+        }
+  
+        return isOverlap;
+    }
+
 }
