@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7279933532800415858}
   m_Layer: 0
   m_Name: backgroundSettings
-  m_TagString: Untagged
+  m_TagString: system
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,5 +52,7 @@ MonoBehaviour:
   monsterImage: {fileID: 0}
   monsterMoveIndicator: {fileID: 0}
   player: {fileID: 0}
+  deadMonsterNumber: 0
   playerTurn: 0
+  monsterExplain: {fileID: 0}
   checkTurn: 0

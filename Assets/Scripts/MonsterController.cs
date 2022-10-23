@@ -41,12 +41,25 @@ public class MonsterController : MonoBehaviour
         }
     }
 
+    public GameObject Reward;
+    int RewardNum = 0;
+    public GameObject Door;
     // Update is called once per frame
     void FixedUpdate()
     {
         checkTurnEnd();
         IndicateImage();
-
+        if(deadMonsterNumber == Monster.Length) // 몬스터를 전부 처치했을시
+        {
+            cost.text = "100000";
+            if (RewardNum == 0)
+            {
+                Instantiate(Reward);
+                RewardNum = 1;
+                Instantiate(Door);
+            }
+            // reward.transform = Vector3.MoveTowards(reward.transform.position, new Vector3(0, 0, 0), Time.deltaTime * 5);
+        }
         if (!(playerTurn))
         {
             
@@ -85,7 +98,7 @@ public class MonsterController : MonoBehaviour
 
                 monsterImage.sprite = hit.collider.gameObject.GetComponent<SpriteRenderer>().sprite; // 돼지 UI에 띄우기
                 monsterMoveIndicator.sprite = hit.collider.gameObject.GetComponent<crossMovement>().moveIndicator;
-                monsterExplain.text = string.Format("HP  {0} / {1}                       지능이 떨어져 주변을 인식하지 못한다", hit.collider.gameObject.GetComponent<Monster>().getHP(), hit.collider.gameObject.GetComponent<Monster>().getFullHP());
+                monsterExplain.text = string.Format(" <color=red> HP  {0} / {1} </color> <br>지능이 떨어져 주변을 인식하지 못한다", hit.collider.gameObject.GetComponent<Monster>().getHP(), hit.collider.gameObject.GetComponent<Monster>().getFullHP());
 
             }
             else

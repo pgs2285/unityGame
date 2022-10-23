@@ -21,6 +21,10 @@ public class Monster:MonoBehaviour
     {
         return this.fullHP;
     }
+    public void setFullHP(int Fullhp)
+    {
+        this.fullHP = Fullhp;
+    }
     public int getDamage(){
         return damage;
     }

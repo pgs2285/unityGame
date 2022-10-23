@@ -148,7 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floatingDamage: {fileID: 6945000908050149954, guid: b8ad563f1ea0cf94a9aaeb0bd71590a4, type: 3}
-  MonsterhpBar: {fileID: 3800894451619613260, guid: b58be48d04e73774aa3086914810dffe, type: 3}
   speed: 10
   turnEnd: 1
   moveIndicator: {fileID: 21300000, guid: 089f046c53c224fd0ac433548a637274, type: 3}

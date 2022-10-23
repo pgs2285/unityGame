@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+
 public class Monster_PIG : Monster
 {
     // Start is called before the first frame update
@@ -13,18 +14,21 @@ public class Monster_PIG : Monster
     void Start()
     {
         pig_animator = GetComponent<Animator>();
+
         //MonsterHpSize = MonsterhpBar.transform.localScale;
     }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       
+        
+        MainCharacter character = collision.gameObject.GetComponent<MainCharacter>();
+
         if (collision.collider.CompareTag("playerAttack"))
         {
             int damage = collision.gameObject.GetComponent<basicAttack>().getTotalDamage();
             setHP(getHP() - damage);
-            //if (((float)getHP() / (float)getFullHP()) > 0) MonsterHpSize.x = ((float)getHP() / (float)getFullHP());
+            //if (((float)getHP() / (float)getFullHP()) > 0) MonsterHpSize.x *= ((float)getHP() / (float)getFullHP());
             //else MonsterHpSize.x = 0;
             //MonsterHpSize.y = 0.1f;
        
