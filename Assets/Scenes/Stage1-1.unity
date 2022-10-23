@@ -378,7 +378,7 @@ MonoBehaviour:
   brokenHP: {fileID: 21300000, guid: c838a086c8f171c4ea3b082fe9bb2a66, type: 3}
   HP: {fileID: 21300000, guid: fa5291b16fcf81b4c98fd9f553d803c4, type: 3}
   hpbar: {fileID: 0}
-  speed: 10
+  speed: 5
   UPArrow: {fileID: 658551119345273447, guid: 7871e093d8c0a8a47852a9aed193a2c7, type: 3}
   DOWNArrow: {fileID: 7840410123845593077, guid: 3ddf287858db900478eabd943110c8f8, type: 3}
   LEFTArrow: {fileID: 7635288694429554477, guid: 3e1b5662a30c24741a9dadfed5e3bca9, type: 3}

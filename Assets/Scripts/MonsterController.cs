@@ -4,8 +4,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
-public class MonsterController : MonoBehaviour
+public class MonsterController : Singleton<MonsterController>
 {
     // Start is called before the first frame update
     public TextMeshProUGUI cost;
@@ -23,7 +24,7 @@ public class MonsterController : MonoBehaviour
     {   
       blankImage = monsterImage.sprite;
       StartCoroutine(generateDelay());
-      
+      DontDestroyOnLoad(this.gameObject);
     }
 
     IEnumerator generateDelay(){
@@ -79,6 +80,7 @@ public class MonsterController : MonoBehaviour
     public void PlayerTurnSet()
     {
       playerTurn = false;
+      SceneManager.LoadScene("testScene");
     }
 
 
