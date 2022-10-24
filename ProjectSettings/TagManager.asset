@@ -12,6 +12,9 @@ TagManager:
   - system
   - playerAttack
   - MonsterHpBar
+  - marker
+  - hpIndicator
+  - MonsterSkill
   layers:
   - Default
   - TransparentFX

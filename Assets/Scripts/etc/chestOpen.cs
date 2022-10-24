@@ -20,9 +20,9 @@ public class chestOpen : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))// ÇÃ·¹ÀÌ¾î°¡ »óÀÚ Á¢ÃË½Ã
+        if (collision.gameObject.CompareTag("Player"))// ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ë½ï¿½
         {
-             // ¾ÆÀÌÅÛ µå¶ø ÄÚµå
+             // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Úµï¿½
              for (int i = 0; i < dropItemList.Length; i++)
              {
                 float x = Random.Range(-1.0f, 1.1f);
@@ -35,8 +35,8 @@ public class chestOpen : MonoBehaviour
                         y = Random.Range(-1.0f, 1.1f);
                     }
                 }
-                else if (dropItemList[i].name == "hpPot0  ion" && Percent(55))  { Instantiate(dropItemList[i], transform.position + new Vector3(x, y, 0), Quaternion.identity); } // 15% È®·ü·Î »ý¼º
-                else if(dropItemList[i].name.Contains("Accesary") && Percent(5)) { Instantiate(dropItemList[i], transform.position + new Vector3(x, y, 0), Quaternion.identity); } //5% È®·ü·Î »ý¼º
+                else if (dropItemList[i].name == "hpPotion" && Percent(55))  { Instantiate(dropItemList[i], transform.position + new Vector3(x, y, 0), Quaternion.identity); } // 15% È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                else if(dropItemList[i].name.Contains("Accesary") && Percent(5)) { Instantiate(dropItemList[i], transform.position + new Vector3(x, y, 0), Quaternion.identity); } //5% È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
              }
             Destroy(gameObject);
         }
@@ -48,7 +48,7 @@ public class chestOpen : MonoBehaviour
         for(int i =0; i< percent; i++)
         {
             int winning = Random.Range(0, 100);
-            if (winning == num) return true; // ´çÃ·
+            if (winning == num) return true; // ï¿½ï¿½Ã·
         }
         return false;
 

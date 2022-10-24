@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class MainCharacter : Singleton<MainCharacter>
 {
     private int damage = 5;
-    private int hp = 3;
-    private int currentHp = 3;
+    private int hp = 6;
+    private int currentHp = 6;
     public Sprite brokenHP;
     public Sprite HP;
     private int canNumber = 0;
@@ -47,8 +47,9 @@ public class MainCharacter : Singleton<MainCharacter>
         this.canNumber = canNumber;
     }
 
-    public GameObject hpbar;
-    protected void HPIndicator(){
+    
+    public void HPIndicator(){
+        GameObject hpbar = GameObject.FindGameObjectWithTag("hpIndicator");
         if(currentHp > 0){
             for(int i = 0; i < hp; i++){
                 hpbar.transform.GetChild(i).gameObject.SetActive(true);

@@ -56,7 +56,7 @@ public class MonsterController : MonoBehaviour
             {
                 Instantiate(Reward);
                 RewardNum = 1;
-                Instantiate(Door);
+                Door.SetActive(true);
             }
             // reward.transform = Vector3.MoveTowards(reward.transform.position, new Vector3(0, 0, 0), Time.deltaTime * 5);
         }
@@ -75,12 +75,30 @@ public class MonsterController : MonoBehaviour
     IEnumerator moveOrder(GameObject[] monsterList)
     {
         Debug.Log("Coroutine Start");
-        foreach (GameObject monster in monsterList)
+        GameObject[] fires = GameObject.FindGameObjectsWithTag("MonsterSkill");
+        foreach(GameObject fire in fires)
         {
-            monster.GetComponent<crossMovement>().pigMovePattern();
+            Destroy(fire);
+        }
+        foreach (GameObject monster in monsterList)
+        {   
+              switch(monster.name){
+                    case "PIG(Clone)":
+                    monster.GetComponent<crossMovement>().pigMovePattern(1);
+                    break;
+
+                    case "RushPig(Clone)":
+                    bool isPlayerAround = monster.GetComponent<RushPig>().isPlayerAround();
+                    if(!isPlayerAround) monster.GetComponent<crossMovement>().pigMovePattern(3);
+                    break;
+
+                    case "FirePig(Clone)":
+                    monster.GetComponent<FirePig>().firePigMovePattern(2);
+                    break;
+              }
+
             checkTurn += 1;
-            yield return new WaitForSeconds(0.4f);
-            
+            yield return new WaitForSeconds(0.5f);
             
         }
         checkTurn = 0;
@@ -100,6 +118,17 @@ public class MonsterController : MonoBehaviour
                 monsterMoveIndicator.sprite = hit.collider.gameObject.GetComponent<crossMovement>().moveIndicator;
                 monsterExplain.text = string.Format(" <color=red> HP  {0} / {1} </color> <br>지능이 떨어져 주변을 인식하지 못한다", hit.collider.gameObject.GetComponent<Monster>().getHP(), hit.collider.gameObject.GetComponent<Monster>().getFullHP());
 
+            }
+            else if(hit.collider.gameObject.tag == "enemy" && hit.collider.gameObject.name.Contains("RushPig")){
+                monsterImage.sprite = hit.collider.gameObject.GetComponent<SpriteRenderer>().sprite; // 돼지 UI에 띄우기
+                monsterMoveIndicator.sprite = hit.collider.gameObject.GetComponent<crossMovement>().moveIndicator;
+                monsterExplain.text = string.Format(" <color=red> HP  {0} / {1} </color> <br>접근시 들이박는 특성이 있다.", hit.collider.gameObject.GetComponent<Monster>().getHP(), hit.collider.gameObject.GetComponent<Monster>().getFullHP());
+            }
+            else if (hit.collider.gameObject.tag == "enemy" && hit.collider.gameObject.name.Contains("FirePig"))
+            {
+                monsterImage.sprite = hit.collider.gameObject.GetComponent<SpriteRenderer>().sprite; // 돼지 UI에 띄우기
+                monsterMoveIndicator.sprite = hit.collider.gameObject.GetComponent<crossMovement>().moveIndicator;
+                monsterExplain.text = string.Format(" <color=red> HP  {0} / {1} </color> <br>지능이 떨어지지만 지나간 자리에 열기는 남아있다.", hit.collider.gameObject.GetComponent<Monster>().getHP(), hit.collider.gameObject.GetComponent<Monster>().getFullHP());
             }
             else
             {

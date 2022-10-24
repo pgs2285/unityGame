@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class MOVING_MAIN_CHARACTER : MainCharacter
+public class MOVING_MAIN_CHARACTER : MonoBehaviour
 {   
     private Vector3 Destination;
     public float speed = 6.0f;
@@ -53,10 +53,6 @@ public class MOVING_MAIN_CHARACTER : MainCharacter
         moveMap_Y = Ground.transform.position.y;
         MapRatio = Ground.transform.localScale.x;
 
-        setCurrentHP(3);
-        setHp(3);
-        setDamage(5);
-
         Destination = new Vector3(moveMap_X + start_x * MapRatio, moveMap_Y + start_y * MapRatio, 0);
         range = range * MapRatio;
     }
@@ -65,7 +61,8 @@ public class MOVING_MAIN_CHARACTER : MainCharacter
 
     void Update()
     {
-        HPIndicator();
+        MainCharacter.Instance.HPIndicator();
+        
         if (Convert.ToInt32(cost.text) >= 1 && system.GetComponent<MonsterController>().playerTurn) // 턴이 남아있으면 움직여라
         {
             showMoveablePaths();
@@ -115,6 +112,7 @@ public class MOVING_MAIN_CHARACTER : MainCharacter
                 {
                     cost.text = (Convert.ToInt32(cost.text) - 1).ToString(); // cost 1감소
                     Destination = hit.collider.gameObject.transform.position; // hit.collider.gameObject(부딫힌 gameObject) 의 위치
+                    Destination.z = 0;
                 }
             }
         }
@@ -172,7 +170,8 @@ public class MOVING_MAIN_CHARACTER : MainCharacter
     void OnCollisionEnter2D(Collision2D enemy){
         if(enemy.collider.CompareTag("enemy")){// 적과 충돌시
             while(true){
-                int direction = UnityEngine.Random.Range(0,5); // 넉백 위치 결정
+                int direction = UnityEngine.Random.Range(1,5); // 넉백 위치 결정
+                Debug.Log("방향"+direction + " range:" + range);
                 Vector3 tempVec = Destination;
                 if(direction == UP){
                     tempVec.y = Destination.y + range;
@@ -187,10 +186,11 @@ public class MOVING_MAIN_CHARACTER : MainCharacter
                     tempVec.x = Destination.x + range;
                     if(isGround(tempVec)) {Destination.x +=range; break;}
                 }
+                
             }
             int enemyDamage = enemy.gameObject.GetComponent<Monster_PIG>().getDamage();
-            setCurrentHP(getCurrentHP() - enemyDamage);
-            Debug.Log("충돌후 currentHP :" + getCurrentHP());
+            MainCharacter.Instance.setCurrentHP(MainCharacter.Instance.getCurrentHP() - enemyDamage);
+            Debug.Log("충돌후 currentHP :" + MainCharacter.Instance.getCurrentHP());
 
         }
 

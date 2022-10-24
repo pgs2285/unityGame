@@ -11,13 +11,13 @@ public class basicAttack : MonoBehaviour
 
     public void Start()
     {
-        playerDamage = GameObject.Find("MainCat").GetComponent<MainCharacter>().getDamage();
+        playerDamage = MainCharacter.Instance.getDamage();
     }
 
     public int getTotalDamage()
     {
         damageCoefficient = 1;
-        playerDamage = GameObject.Find("MainCat").GetComponent<MainCharacter>().getDamage();
+        playerDamage =  MainCharacter.Instance.getDamage();
         totalDamage = playerDamage * damageCoefficient;
         
         return this.totalDamage;

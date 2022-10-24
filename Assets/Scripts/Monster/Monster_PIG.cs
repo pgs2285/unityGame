@@ -40,7 +40,6 @@ public class Monster_PIG : Monster
 
             Instantiate(floatingDamage, transform.position, Quaternion.identity);
             
-            Debug.Log("들어온 대미지: "+ damage + " 남은체력:"+getHP());
             if (getHP() <= 0)
             {   
                 Destroy(gameObject.GetComponent<BoxCollider2D>());

@@ -6,7 +6,7 @@ using UnityEngine;
 public class turnManagement : MonoBehaviour
 {      
     public bool isMyturn = true;
-
+    
     public GameObject gameoverPanel;
 
     public int enemiesActionCount = 0;
@@ -20,13 +20,14 @@ public class turnManagement : MonoBehaviour
     private void Start()
     {
         cm = GameObject.Find("MainCat").GetComponent<CharacterMovement>();
+        
     }
     void Update()
     {
 
         if(enemiesActionCount  >= enemyNumber)
         {
-            isMyturn = true; // Àû ÀÌµ¿ ³¡
+            isMyturn = true; // ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½
             leftTurn.text = "5";
  
             enemiesActionCount = 0;
