@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class MainCharacter : MonoBehaviour
+public class MainCharacter : Singleton<MainCharacter>
 {
     private int damage = 5;
-    public int hp = 3;
-    public int currentHp = 3;
+    private int hp = 3;
+    private int currentHp = 3;
     public Sprite brokenHP;
     public Sprite HP;
+    private int canNumber = 0;
     
 
     public void setDamage(int damage)
@@ -17,8 +18,8 @@ public class MainCharacter : MonoBehaviour
     }
     public int getDamage()
     {
-        Debug.Log("damage = " + damage);
-        return damage;
+        
+        return Random.Range(damage-2, damage +2);
     }
     public void setHp(int hp)
     {
@@ -28,19 +29,27 @@ public class MainCharacter : MonoBehaviour
     {
         return hp;
     }
-
-
-    void OnCollisionEnter2D(Collision2D enemy){
-        if(enemy.collider.CompareTag("enemy")){
-            int enemyDamage = enemy.gameObject.GetComponent<Monster_PIG>().getDamage();
-            currentHp -= enemyDamage;
-            
-            
-        }
+    public int getCurrentHP()
+    {
+        return currentHp;
     }
 
-    public GameObject hpbar;
-    void HPIndicator(){
+    public void setCurrentHP(int currentHP)
+    {
+        this.currentHp = currentHP;
+    }
+    public int getCanNumber()
+    {
+        return canNumber;
+    }
+    public void setCanNumber(int canNumber)
+    {
+        this.canNumber = canNumber;
+    }
+
+    
+    public void HPIndicator(){
+        GameObject hpbar = GameObject.FindGameObjectWithTag("hpIndicator");
         if(currentHp > 0){
             for(int i = 0; i < hp; i++){
                 hpbar.transform.GetChild(i).gameObject.SetActive(true);
@@ -58,8 +67,5 @@ public class MainCharacter : MonoBehaviour
 
     }
 
-    void Update(){
-        HPIndicator();
-    }
 
 }

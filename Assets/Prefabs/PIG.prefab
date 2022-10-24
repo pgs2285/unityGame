@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8047501020139369543}
   - component: {fileID: -7522647074865057057}
   - component: {fileID: 4802872785005713495}
-  - component: {fileID: 7323401663316165701}
   - component: {fileID: 278583631953553988}
   m_Layer: 0
   m_Name: PIG
@@ -30,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4665010718707763835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.13651696, y: 6.6414695, z: -1}
+  m_LocalPosition: {x: -0.13651696, y: 6.6414695, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -102,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0059239566, y: -0.031989254}
+  m_Offset: {x: 0.0069190264, y: -0.020383306}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -113,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.23954123, y: 0.25375885}
+  m_Size: {x: 0.2947268, y: 0.32685512}
   m_EdgeRadius: 0
 --- !u!50 &-7522647074865057057
 Rigidbody2D:
@@ -133,8 +132,8 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 7
 --- !u!114 &4802872785005713495
 MonoBehaviour:
@@ -148,20 +147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb8fef11c87b534d8faf4edc1496c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatingDamage: {fileID: 6945000908050149954, guid: b8ad563f1ea0cf94a9aaeb0bd71590a4, type: 3}
+  range: 1
+  speed: 10
   turnEnd: 1
   moveIndicator: {fileID: 21300000, guid: 089f046c53c224fd0ac433548a637274, type: 3}
---- !u!114 &7323401663316165701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4665010718707763835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf96376dfe467d8409e77a4dc8ff2b75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &278583631953553988
 Animator:
   serializedVersion: 4
@@ -175,7 +165,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b2b19ce3cfedae44d9fc280c59821717, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

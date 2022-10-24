@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class crossMovement : MonoBehaviour
+public class crossMovement : Monster_PIG
 {
     // Start is called before the first frame update
 
-    private GameObject Ground;
-    private Vector3 moveToScreen;
-    private float range = 1;
-    private int speed = 10;
+    protected GameObject Ground;
+    protected Vector3 moveToScreen;
+    public float range = 1;
+    public int speed = 10;
     public bool turnEnd;
     Vector3 checkGround;
     public Sprite moveIndicator;
@@ -23,56 +23,75 @@ public class crossMovement : MonoBehaviour
     private const int ERROR = 0;
     
 
-    private GameObject system;
+    protected GameObject system;
 
     void Start()
     {
         Ground = GameObject.FindGameObjectWithTag("groundPrefs");
         range = range * Ground.transform.localScale.x;
-        moveToScreen.x = range * UnityEngine.Random.Range(-4, 4) + Ground.transform.position.x;
-        moveToScreen.y = range * UnityEngine.Random.Range(-4, 4) + Ground.transform.position.y;
-        moveToScreen.z = -2;
+        moveToScreen.x = range * UnityEngine.Random.Range(-4, 5) + Ground.transform.position.x;
+        moveToScreen.y = range * UnityEngine.Random.Range(-4, 5) + Ground.transform.position.y;
+        pig_animator = GetComponent<Animator>();
+        
         Debug.Log(moveToScreen);
         system = GameObject.FindGameObjectWithTag("system");
         
     }
 
     void FixedUpdate()
-    {   
-        if(!(system.GetComponent<MonsterController>().playerTurn)){
-            pigMovePattern();
+    {
+        if (transform.position != moveToScreen)
+        {
+            pig_animator.SetBool("isMove", true);
+        }
+        else
+        {
+            pig_animator.SetBool("isMove", false);
         }
         transform.position = Vector3.MoveTowards(transform.position, moveToScreen, Time.deltaTime * speed);
     }
 
-    void pigMovePattern(){
-        while(true){
-            int direction = UnityEngine.Random.Range(1,5); // 1~4 까지 이동
+    public void pigMovePattern(float range){
+       
+         // 1~4 까지 이동
+        range = range * Ground.transform.localScale.x;
+        while (true)
+        {
+            int direction = UnityEngine.Random.Range(1, 5);
             checkGround = moveToScreen;
-            if(direction == UP){
+            if (direction == UP)
+            {
                 checkGround.y += range;
-                if(isGround(checkGround)) moveToScreen = checkGround;
-                system.GetComponent<MonsterController>().checkTurn += 1;
-                
-            }else if(direction == DOWN){
-                checkGround.y -= range;
-                if(isGround(checkGround)) moveToScreen = checkGround;
-                system.GetComponent<MonsterController>().checkTurn += 1;
-                
-            }else if(direction == LEFT){
-                checkGround.x -= range;
-                if(isGround(checkGround)) moveToScreen = checkGround;
-                system.GetComponent<MonsterController>().checkTurn += 1;
-                
-            }else if(direction == RIGHT){
-                checkGround.x += range;
-                if(isGround(checkGround)) moveToScreen = checkGround;
-                system.GetComponent<MonsterController>().checkTurn += 1;
-                
+                if (isGround(checkGround) && !collisionPrevent(checkGround)) { moveToScreen = checkGround; break; }
+
+
             }
-            break;
+            else if (direction == DOWN)
+            {
+                checkGround.y -= range;
+                if (isGround(checkGround) && !collisionPrevent(checkGround)) { moveToScreen = checkGround; break; }
+
+
+            }
+            else if (direction == LEFT)
+            {
+                checkGround.x -= range;
+                if (isGround(checkGround) && !collisionPrevent(checkGround)) { moveToScreen = checkGround; break; }
+
+
+            }
+            else if (direction == RIGHT)
+            {
+                checkGround.x += range;
+                if (isGround(checkGround) && !collisionPrevent(checkGround)) {moveToScreen = checkGround; break;}
+
+
+            }
         }
+ 
     }
+
+
 
     bool isGround(Vector3 moving){
         int x =  (int) Math.Round((moving.x - Ground.transform.position.x) / range);
@@ -82,6 +101,7 @@ public class crossMovement : MonoBehaviour
         }
         return false;
     }
+
 
 
 }

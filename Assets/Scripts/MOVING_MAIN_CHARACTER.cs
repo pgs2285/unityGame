@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class MOVING_MAIN_CHARACTER : MainCharacter
+public class MOVING_MAIN_CHARACTER : MonoBehaviour
 {   
     private Vector3 Destination;
     public float speed = 6.0f;
@@ -48,10 +48,11 @@ public class MOVING_MAIN_CHARACTER : MainCharacter
     }
     void Start()
     {
+                
         moveMap_X = Ground.transform.position.x;
         moveMap_Y = Ground.transform.position.y;
         MapRatio = Ground.transform.localScale.x;
-        
+
         Destination = new Vector3(moveMap_X + start_x * MapRatio, moveMap_Y + start_y * MapRatio, 0);
         range = range * MapRatio;
     }
@@ -60,7 +61,7 @@ public class MOVING_MAIN_CHARACTER : MainCharacter
 
     void Update()
     {
-        
+        MainCharacter.Instance.HPIndicator();
         if (Convert.ToInt32(cost.text) >= 1 && system.GetComponent<MonsterController>().playerTurn) // 턴이 남아있으면 움직여라
         {
             showMoveablePaths();
@@ -166,24 +167,31 @@ public class MOVING_MAIN_CHARACTER : MainCharacter
 
     void OnCollisionEnter2D(Collision2D enemy){
         if(enemy.collider.CompareTag("enemy")){// 적과 충돌시
-        while(true){
-            int direction = UnityEngine.Random.Range(0,5); // 넉백 위치 결정
-            Vector3 tempVec = Destination;
-            if(direction == UP){
-                tempVec.y = Destination.y + range;
-                if(isGround(tempVec)) {Destination.y +=range; break;} 
-            }else if(direction == DOWN){
-                tempVec.y = Destination.y - range;
-                if(isGround(tempVec)) {Destination.y -=range; break;}
-            }else if(direction == LEFT){
-                tempVec.x = Destination.x - range;
-                if(isGround(tempVec)) {Destination.x -=range; break;}
-            }else if(direction == RIGHT){
-                tempVec.x = Destination.x + range;
-                if(isGround(tempVec)) {Destination.x +=range; break;}
+            while(true){
+                int direction = UnityEngine.Random.Range(1,5); // 넉백 위치 결정
+                Debug.Log("방향"+direction + " range:" + range);
+                Vector3 tempVec = Destination;
+                if(direction == UP){
+                    tempVec.y = Destination.y + range;
+                    if(isGround(tempVec)) {Destination.y +=range; break;} 
+                }else if(direction == DOWN){
+                    tempVec.y = Destination.y - range;
+                    if(isGround(tempVec)) {Destination.y -=range; break;}
+                }else if(direction == LEFT){
+                    tempVec.x = Destination.x - range;
+                    if(isGround(tempVec)) {Destination.x -=range; break;}
+                }else if(direction == RIGHT){
+                    tempVec.x = Destination.x + range;
+                    if(isGround(tempVec)) {Destination.x +=range; break;}
+                }
+                
             }
+            int enemyDamage = enemy.gameObject.GetComponent<Monster_PIG>().getDamage();
+            MainCharacter.Instance.setCurrentHP(MainCharacter.Instance.getCurrentHP() - enemyDamage);
+            Debug.Log("충돌후 currentHP :" + MainCharacter.Instance.getCurrentHP());
+
         }
-        }
+
     }
 
     bool isGround(Vector3 moving){

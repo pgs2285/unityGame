@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - marker
   - enemy
   - player
   - ground
@@ -12,6 +11,9 @@ TagManager:
   - groundPrefs
   - system
   - playerAttack
+  - MonsterHpBar
+  - marker
+  - hpIndicator
   layers:
   - Default
   - TransparentFX
