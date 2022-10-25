@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class MainCharacter : Singleton<MainCharacter>
 {
     private int damage = 5;
-    private int hp = 3;
-    private int currentHp = 3;
+    private int hp = 6;
+    private int currentHp = 6;
     public Sprite brokenHP;
     public Sprite HP;
     private int canNumber = 0;

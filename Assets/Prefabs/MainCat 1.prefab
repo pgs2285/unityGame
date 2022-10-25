@@ -101,7 +101,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 114d7f896f1615e46aa58b895b1d1db5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -121,7 +121,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.016917348, y: -0.016290717}
+  m_Offset: {x: -0.016917363, y: -0.028235912}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -132,7 +132,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.17588925, y: 0.22977407}
+  m_Size: {x: 0.088291794, y: 0.118286625}
   m_EdgeRadius: 0
 --- !u!50 &3382153935464250508
 Rigidbody2D:

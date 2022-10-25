@@ -62,6 +62,7 @@ public class MOVING_MAIN_CHARACTER : MonoBehaviour
     void Update()
     {
         MainCharacter.Instance.HPIndicator();
+        
         if (Convert.ToInt32(cost.text) >= 1 && system.GetComponent<MonsterController>().playerTurn) // 턴이 남아있으면 움직여라
         {
             showMoveablePaths();
@@ -111,6 +112,7 @@ public class MOVING_MAIN_CHARACTER : MonoBehaviour
                 {
                     cost.text = (Convert.ToInt32(cost.text) - 1).ToString(); // cost 1감소
                     Destination = hit.collider.gameObject.transform.position; // hit.collider.gameObject(부딫힌 gameObject) 의 위치
+                    Destination.z = 0;
                 }
             }
         }

@@ -356,11 +356,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b6bf0e323d97574ebca71998848d236, type: 3}
---- !u!1 &1292113838 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8354419987659326106, guid: 1b6bf0e323d97574ebca71998848d236, type: 3}
-  m_PrefabInstance: {fileID: 1292113837}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1381391068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1057,7 +1052,7 @@ PrefabInstance:
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Door
       value: 
-      objectReference: {fileID: 1292113838}
+      objectReference: {fileID: 8354419987659326106, guid: 1b6bf0e323d97574ebca71998848d236, type: 3}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: cost
       value: 
@@ -1080,7 +1075,7 @@ PrefabInstance:
       objectReference: {fileID: 2074118704}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.size
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: monsterMoveIndicator
@@ -1089,15 +1084,15 @@ PrefabInstance:
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.data[0]
       value: 
-      objectReference: {fileID: 1518674376945614584, guid: fd0d7dc8dab8d4f4197fcf18a1b428ef, type: 3}
+      objectReference: {fileID: 6279506638436849042, guid: 406b979738ab8f6489df390112b96099, type: 3}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.data[1]
       value: 
-      objectReference: {fileID: 1518674376945614584, guid: fd0d7dc8dab8d4f4197fcf18a1b428ef, type: 3}
+      objectReference: {fileID: 6279506638436849042, guid: 406b979738ab8f6489df390112b96099, type: 3}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.data[2]
       value: 
-      objectReference: {fileID: 1518674376945614584, guid: fd0d7dc8dab8d4f4197fcf18a1b428ef, type: 3}
+      objectReference: {fileID: 6279506638436849042, guid: 406b979738ab8f6489df390112b96099, type: 3}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.data[3]
       value: 
@@ -1109,7 +1104,7 @@ PrefabInstance:
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.data[5]
       value: 
-      objectReference: {fileID: 6279506638436849042, guid: 406b979738ab8f6489df390112b96099, type: 3}
+      objectReference: {fileID: 1518674376945614584, guid: fd0d7dc8dab8d4f4197fcf18a1b428ef, type: 3}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.data[6]
       value: 
@@ -1117,7 +1112,7 @@ PrefabInstance:
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.data[7]
       value: 
-      objectReference: {fileID: 1518674376945614584, guid: fd0d7dc8dab8d4f4197fcf18a1b428ef, type: 3}
+      objectReference: {fileID: 6279506638436849042, guid: 406b979738ab8f6489df390112b96099, type: 3}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.data[8]
       value: 
@@ -1125,7 +1120,19 @@ PrefabInstance:
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.data[9]
       value: 
-      objectReference: {fileID: 4665010718707763835, guid: 0c78c0545606cdb4e96b80e007853148, type: 3}
+      objectReference: {fileID: 6279506638436849042, guid: 406b979738ab8f6489df390112b96099, type: 3}
+    - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
+      propertyPath: Monster.Array.data[10]
+      value: 
+      objectReference: {fileID: 6279506638436849042, guid: 406b979738ab8f6489df390112b96099, type: 3}
+    - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
+      propertyPath: Monster.Array.data[11]
+      value: 
+      objectReference: {fileID: 1518674376945614584, guid: fd0d7dc8dab8d4f4197fcf18a1b428ef, type: 3}
+    - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
+      propertyPath: Monster.Array.data[12]
+      value: 
+      objectReference: {fileID: 1518674376945614584, guid: fd0d7dc8dab8d4f4197fcf18a1b428ef, type: 3}
     - target: {fileID: 7279933532800415860, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: m_Name
       value: backgroundSettings
