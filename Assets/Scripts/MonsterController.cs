@@ -26,7 +26,7 @@ public class MonsterController : MonoBehaviour
     {
         blankImage = monsterImage.sprite;
         StartCoroutine(generateDelay());
-
+        
     }
 
     IEnumerator generateDelay()
