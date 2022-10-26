@@ -25,13 +25,13 @@ public class chestOpen : MonoBehaviour
              // ������ ��� �ڵ�
              for (int i = 0; i < dropItemList.Length; i++)
              {
-                float x = Random.Range(-1.0f, 1.1f);
+                float x = Random.Range(1.0f, 1.9f);
                 float y = Random.Range(-1.0f, 1.1f);
                 if (dropItemList[i].name == "Can") {
                     for (int j = 0; j < Random.Range(1, 4); j++)
                     {
                         Instantiate(dropItemList[i], transform.position + new Vector3(x, y, 0), Quaternion.identity);
-                        x = Random.Range(-1.0f, 1.1f);
+                        x = Random.Range(1.0f, 1.9f);
                         y = Random.Range(-1.0f, 1.1f);
                     }
                 }
