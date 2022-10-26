@@ -84,13 +84,13 @@ public class MOVING_MAIN_CHARACTER : MonoBehaviour
         }
     }
 
-    int checkMovablePosition(RaycastHit2D hit){ // 현재는 float 비교를 위해 ToString으로 비교하지만 추후 오차값 정해서 수정하기
+    int checkMovablePosition(RaycastHit2D hit, float hitbox){ // 현재는 float 비교를 위해 ToString으로 비교하지만 추후 오차값 정해서 수정하기
         Vector3 clickPosition = hit.collider.gameObject.transform.position;
         //Debug.Log(clickPosition.x.ToString() +" "+ transform.position.x.ToString() +" " + clickPosition.y.ToString() +" " +(transform.position.y - range).ToString());
-        if (isEqual(clickPosition.x, transform.position.x - range) && isEqual(clickPosition.y,(transform.position.y))) return LEFT;  // 캐릭터기준 좌측 클릭시
-        else if (isEqual(clickPosition.x, transform.position.x + range) && isEqual(clickPosition.y, transform.position.y)) return RIGHT; // 캐릭터기준 우측클릭시
-        else if (isEqual(clickPosition.x, transform.position.x) && isEqual(clickPosition.y, transform.position.y + range)) return UP; //캐릭터기준 아래클릭시
-        else if (isEqual(clickPosition.x, transform.position.x) && isEqual(clickPosition.y, transform.position.y - range)) return DOWN;
+        if (isEqual(clickPosition.x, transform.position.x - range * hitbox) && isEqual(clickPosition.y,(transform.position.y))) return LEFT;  // 캐릭터기준 좌측 클릭시
+        else if (isEqual(clickPosition.x, transform.position.x + range * hitbox) && isEqual(clickPosition.y, transform.position.y)) return RIGHT; // 캐릭터기준 우측클릭시
+        else if (isEqual(clickPosition.x, transform.position.x) && isEqual(clickPosition.y, transform.position.y + range * hitbox)) return UP; //캐릭터기준 아래클릭시
+        else if (isEqual(clickPosition.x, transform.position.x) && isEqual(clickPosition.y, transform.position.y - range * hitbox)) return DOWN;
          //캐릭터기준 위 클릭시
         else return 0;
 
@@ -103,12 +103,15 @@ public class MOVING_MAIN_CHARACTER : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // 카메라로 부터 마우스 위치에 Ray를 쏜다
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);  //발사위치, 발사 방향, 발사거리
             if(hit){
-                if(hit.collider.gameObject.tag == "enemy" && checkMovablePosition(hit) != ERROR)
+                if(hit.collider.gameObject.tag == "enemy" && checkMovablePosition(hit, 1) != ERROR)
                 {
                     cost.text = (Convert.ToInt32(cost.text) - 1).ToString(); // cost 1감소
                     Instantiate(basicAttack, hit.collider.gameObject.transform.position, Quaternion.identity);
+                }else if(hit.collider.gameObject.name.Contains("BOSS") && checkMovablePosition(hit,2) != ERROR){
+                    cost.text = (Convert.ToInt32(cost.text) - 1).ToString(); // cost 1감소
+                    Instantiate(basicAttack, hit.collider.gameObject.transform.position, Quaternion.identity);
                 }
-                if (checkMovablePosition(hit) != ERROR && hit.collider.gameObject.tag == "ground")
+                if (checkMovablePosition(hit, 1) != ERROR && hit.collider.gameObject.tag == "ground")
                 {
                     cost.text = (Convert.ToInt32(cost.text) - 1).ToString(); // cost 1감소
                     Destination = hit.collider.gameObject.transform.position; // hit.collider.gameObject(부딫힌 gameObject) 의 위치
@@ -128,22 +131,22 @@ public class MOVING_MAIN_CHARACTER : MonoBehaviour
         if(hit){
             if (hit.collider.gameObject.tag == "ground")
             {
-                if (checkMovablePosition(hit) == DOWN)
+                if (checkMovablePosition(hit,1) == DOWN)
                 { //캐릭터 아래쪽에 마커표기
                     ArrowPositions.y = transform.position.y - range;
                     Instantiate(DOWNArrow, ArrowPositions, Quaternion.identity);
                 }
-                else if (checkMovablePosition(hit) == UP) //캐릭터 위쪽에 마커표기
+                else if (checkMovablePosition(hit,1) == UP) //캐릭터 위쪽에 마커표기
                 {
                     ArrowPositions.y = transform.position.y + range;
                     Instantiate(UPArrow, ArrowPositions, Quaternion.identity);
                 }
-                else if (checkMovablePosition(hit) == LEFT) //캐릭터 왼쪽에 마커표기
+                else if (checkMovablePosition(hit,1) == LEFT) //캐릭터 왼쪽에 마커표기
                 {
                     ArrowPositions.x = transform.position.x - range;
                     Instantiate(LEFTArrow, ArrowPositions, Quaternion.identity);
                 }
-                else if (checkMovablePosition(hit) == RIGHT) //캐릭터 오른쪽에 마커표기
+                else if (checkMovablePosition(hit,1) == RIGHT) //캐릭터 오른쪽에 마커표기
                 {
                     ArrowPositions.x = transform.position.x + range;
                     Instantiate(RIGHTArrow, ArrowPositions, Quaternion.identity);

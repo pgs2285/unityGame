@@ -15,6 +15,7 @@ TagManager:
   - marker
   - hpIndicator
   - MonsterSkill
+  - boss
   layers:
   - Default
   - TransparentFX

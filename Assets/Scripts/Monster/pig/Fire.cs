@@ -9,6 +9,7 @@ public class Fire : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             MainCharacter.Instance.setCurrentHP(MainCharacter.Instance.getCurrentHP() - 1);
+            Destroy(gameObject);
         }
     }
 }
