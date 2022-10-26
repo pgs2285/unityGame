@@ -1080,7 +1080,7 @@ PrefabInstance:
       objectReference: {fileID: 2074118704}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.size
-      value: 11
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: monsterMoveIndicator
