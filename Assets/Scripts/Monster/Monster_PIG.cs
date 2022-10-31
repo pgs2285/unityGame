@@ -33,7 +33,6 @@ public class Monster_PIG : Monster
             //MonsterHpSize.y = 0.1f;
        
             //MonsterhpBar.transform.localScale = MonsterHpSize;
-
             floatingDamage.GetComponent<TextMesh>().text = damage.ToString();
             floatingDamage.GetComponent<MeshRenderer>().sortingOrder = 3;
 
