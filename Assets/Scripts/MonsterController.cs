@@ -19,6 +19,7 @@ public class MonsterController : MonoBehaviour
     public int deadMonsterNumber = 0;
     public bool playerTurn;
     public TextMeshProUGUI monsterExplain;
+    
 
     private int coroutineCount = 0;
 
@@ -26,7 +27,7 @@ public class MonsterController : MonoBehaviour
     {
         blankImage = monsterImage.sprite;
         StartCoroutine(generateDelay());
-
+        
     }
 
     IEnumerator generateDelay()
@@ -64,6 +65,7 @@ public class MonsterController : MonoBehaviour
         {
             
             GameObject[] monsterList = GameObject.FindGameObjectsWithTag("enemy");
+            
             if (coroutineCount == 0)
             {
                 StartCoroutine(moveOrder(monsterList));
@@ -94,6 +96,11 @@ public class MonsterController : MonoBehaviour
 
                     case "FirePig(Clone)":
                     monster.GetComponent<FirePig>().firePigMovePattern(2);
+                    break;
+
+                    case "pigBOSS(Clone)":
+                    monster.GetComponent<crossMovement>().pigMovePattern(1);
+                    
                     break;
               }
 
@@ -129,6 +136,11 @@ public class MonsterController : MonoBehaviour
                 monsterImage.sprite = hit.collider.gameObject.GetComponent<SpriteRenderer>().sprite; // 돼지 UI에 띄우기
                 monsterMoveIndicator.sprite = hit.collider.gameObject.GetComponent<crossMovement>().moveIndicator;
                 monsterExplain.text = string.Format(" <color=red> HP  {0} / {1} </color> <br>지능이 떨어지지만 지나간 자리에 열기는 남아있다.", hit.collider.gameObject.GetComponent<Monster>().getHP(), hit.collider.gameObject.GetComponent<Monster>().getFullHP());
+            }
+            else if(hit.collider.gameObject.tag == "enemy" && hit.collider.gameObject.name.Contains("pigBOSS")){
+                monsterImage.sprite = hit.collider.gameObject.GetComponent<SpriteRenderer>().sprite; // 돼지 UI에 띄우기
+                monsterMoveIndicator.sprite = hit.collider.gameObject.GetComponent<crossMovement>().moveIndicator;
+                monsterExplain.text = string.Format(" <color=red> HP  {0} / {1} </color> <br>UNKNOWN", hit.collider.gameObject.GetComponent<Monster>().getHP(), hit.collider.gameObject.GetComponent<Monster>().getFullHP());
             }
             else
             {

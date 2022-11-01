@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using TMPro;
 
 public class FirePig : crossMovement
 {
@@ -39,65 +40,43 @@ public class FirePig : crossMovement
     }
 
 
-    public void firePigMovePattern(float range)
+    const double EPSILON = 0.0001; // 허용오차
+
+    private bool isEqual(float x, float y) // 비교 함수.
+
     {
 
+        return (((x - EPSILON) < y) && (y < (x + EPSILON)));
+
+    }
+
+    public bool firePigMovePattern(float range)
+    {
+        GameObject mainCat = GameObject.FindGameObjectWithTag("Player");
+        Vector3 catPosition = mainCat.transform.position;
         // 1~4 까지 이동
         range = range * Ground.transform.localScale.x;
-        while (true)
-        {
-            int direction = UnityEngine.Random.Range(1, 5);
-            checkGround = moveToScreen;
-            if (direction == UP)
+
+
+
+            for (int i = -3; i <= 3; i++)
             {
-                checkGround.y += range;
-                if (isGround(checkGround) && !collisionPrevent(checkGround)) { 
-                    
-                    for(float i = 0; i < 1.6; i+= 0.8f)
-                    Instantiate(Fire, transform.position + new Vector3(0, i, 0),Quaternion.identity);
-                    moveToScreen = checkGround;
-                    break;
+
+
+                if (isEqual(catPosition.y, (transform.position.y + (range * i))) && isEqual(catPosition.x, transform.position.x))
+                {
+                    moveToScreen = catPosition;
+                    return true;
+                }
+                else if (isEqual(catPosition.y, transform.position.y) && isEqual(catPosition.x, (transform.position.x + (range * i))))
+                {
+                    moveToScreen = catPosition;
+                    return true;
                 }
 
-
             }
-            else if (direction == DOWN)
-            {
-                checkGround.y -= range;
-                if (isGround(checkGround) && !collisionPrevent(checkGround)) {
-                    for (float i = 0; i < 1.6; i += 0.8f)
-                        Instantiate(Fire, transform.position + new Vector3(0, -i, 0), Quaternion.identity);
-                    moveToScreen = checkGround;
-                    break;
-                }
-
-
-            }
-            else if (direction == LEFT)
-            {
-                checkGround.x -= range;
-                if (isGround(checkGround) && !collisionPrevent(checkGround)) {
-                    for (float i = 0; i < 1.6; i += 0.8f)
-                        Instantiate(Fire, transform.position + new Vector3(-i, 0, 0), Quaternion.identity);
-                    moveToScreen = checkGround;
-                    break;
-                }
-
-
-            }
-            else if (direction == RIGHT)
-            {
-                checkGround.x += range;
-                if (isGround(checkGround) && !collisionPrevent(checkGround)) {
-                    for (float i = 0; i < 1.6; i += 0.8f)
-                        Instantiate(Fire, transform.position + new Vector3(i, 0, 0), Quaternion.identity);
-                    moveToScreen = checkGround;
-                    break;
-                }
-
-
-            }
-        }
+        return false;
+        
 
     }
 

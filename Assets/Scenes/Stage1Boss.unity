@@ -416,7 +416,7 @@ RectTransform:
   m_GameObject: {fileID: 844619776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 9, y: 9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 183668487}
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0b6591e1a3bd1ff4c8ebab5660fbde4d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 718309b8c0fb1094b9aa37bef823d38b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1249,6 +1249,7 @@ GameObject:
   - component: {fileID: 1409415795}
   - component: {fileID: 1409415794}
   - component: {fileID: 1409415793}
+  - component: {fileID: 1409415796}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1322,6 +1323,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1409415796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409415792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c0177b6feb14ffc9f5a35274776831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShakeAmount: 0.05
 --- !u!1 &1508853089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1631,6 +1645,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4707282485648632630}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
+      propertyPath: camerashake
+      value: 
+      objectReference: {fileID: 1409415794}
+    - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: monsterImage
       value: 
       objectReference: {fileID: 1760486515}
@@ -1640,7 +1658,7 @@ PrefabInstance:
       objectReference: {fileID: 2074118704}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: monsterMoveIndicator
@@ -1653,19 +1671,19 @@ PrefabInstance:
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.data[1]
       value: 
-      objectReference: {fileID: 6279506638436849042, guid: 406b979738ab8f6489df390112b96099, type: 3}
+      objectReference: {fileID: 1518674376945614584, guid: fd0d7dc8dab8d4f4197fcf18a1b428ef, type: 3}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.data[2]
       value: 
-      objectReference: {fileID: 6279506638436849042, guid: 406b979738ab8f6489df390112b96099, type: 3}
+      objectReference: {fileID: 4665010718707763835, guid: 0c78c0545606cdb4e96b80e007853148, type: 3}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.data[3]
       value: 
-      objectReference: {fileID: 1518674376945614584, guid: fd0d7dc8dab8d4f4197fcf18a1b428ef, type: 3}
+      objectReference: {fileID: 5623402441852040541, guid: 5dc394ddfbcbbc248a9def7e65aa4442, type: 3}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.data[4]
       value: 
-      objectReference: {fileID: 1518674376945614584, guid: fd0d7dc8dab8d4f4197fcf18a1b428ef, type: 3}
+      objectReference: {fileID: 4665010718707763835, guid: 0c78c0545606cdb4e96b80e007853148, type: 3}
     - target: {fileID: 7279933532800415858, guid: e82f2f432ef9e4365940f1a48722561d, type: 3}
       propertyPath: Monster.Array.data[5]
       value: 
